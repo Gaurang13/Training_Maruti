@@ -31,3 +31,19 @@ def square_root(number):
         print("please enter the valid input")
 
 square_root(36)
+
+#decorater use in class
+class outer_class:
+    
+    def __init__(self,func):
+        self.function = func
+    
+    def __call__(self,*args):
+        
+        return self.function(*args)
+
+@outer_class
+def square_root(number):
+    return math.sqrt(number)
+
+print("square root is = ",square_root(36))
