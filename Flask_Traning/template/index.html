@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if title%}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>Welcome to my name land </title>
+    {% endif%}
+</head>
+<body>
+    {% extends "navbar.html"%}
+    {% block content %}
+    <h1>Hello {{user.username}}</h1>
+    {% for post in posts%}
+    <h3>{{post.author.username}} : {{post.body}}</h3>
+    {% endfor %}
+    {% endblock %}
+</body>
+</html>
