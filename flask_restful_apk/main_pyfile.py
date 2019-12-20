@@ -11,10 +11,11 @@ from flask import current_app
 
 logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
 
-connection = connection_object
+
 app = Flask(__name__)
 api = Api(app)
 configure_app(app)
+connection = connection_object()
 
 logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
 
