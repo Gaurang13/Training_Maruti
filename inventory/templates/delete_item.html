@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete</title>
+</head>
+<body>
+ <h1>Enter Id with comma (,) seperation  to delete multiple items at single time</h1>
+   {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{message}}</p>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+<form action="http://127.0.0.1:5000/delete" method="post">
+
+    <label>Enter Id:</label>
+    <input type="text" name="mdelete">
+    <hr>
+    <input type="submit" value="submit">
+</form>
+</body>
+</html>

@@ -6,13 +6,53 @@
 </head>
 <body>
     <h1>Search data by Inventory_name or Category</h1>
+       {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{message}}</p>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
     <form action="http://127.0.0.1:5000/search" method="post">
-        <label for="">Inventory_name</label>
-        <input type="text" name="sname"/><hr>
-        <label for="">Category</label>
-        <input type="text" name="category">
+        <label >Inventory_name</label>
+        <input type="text" name="s_name"/><hr>
+        <label >Category</label>
+        <input type="text" name="s_category">
+        <hr>
+        <lable>TimeZone</lable>
+        <input list="browsers" name="time_zone" required>
+        <datalist id="browsers">
+            <option value="Pacific/Pago_Pago">
+            <option value="Australia/Broken_Hill">
+            <option value="Europe/Paris">
+            <option value="Asia/Hong_Kong">
+            <option value="Asia/Kolkata">
+        </datalist>
         <hr>
         <input type="submit" name="search">
     </form>
+    <center><p>
+    {% if data %}
+        <table border="1">
+            <th>Id</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Expire_time(CST Time)</th>
+            <th>Quantity</th>
+            <th>Manufacturing_Time(CST Time)</th>
+            <th>Image</th>
+            {% for idata in data %}
+                <tr>
+                    <td>{{idata['inventory_id']}}</td>
+                    <td>{{idata['Name']}}</td>
+                    <td>{{idata['Category']}}</td>
+                    <td>{{idata['expire_time']}}</td>
+                    <td>{{idata['Quantity']}}</td>
+                    <td>{{idata['manufacturing_date']}}</td>
+                    <td><img src={{idata['image']}} alt="" width="50px" height="50px"></td>
+                </tr>
+            {% endfor %}
+        </table>
+        {% endif %}</p></center>
 </body>
 </html>

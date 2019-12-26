@@ -1,6 +1,7 @@
 import logging
 from Database.db_connector import connection_object
-
+import logging
+log = logging.getLogger(__name__)
 
 
 def insert(name, category, etime, quantity, mtime, sname):
@@ -13,6 +14,7 @@ def insert(name, category, etime, quantity, mtime, sname):
             connection.commit()
             return "Done"
     except Exception as e:
-        print(e)
+        log.warning(e)
+        log.warning("error in sql in insert ")
 
 

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Quantity</title>
+</head>
+<body>
+    <h1>Enter Id To change The Quantity</h1>
+     {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{message}}</p>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+    <form action="http://127.0.0.1:5000/update" method="post">
+        <label>Enter Id</label>
+        <input type="number" name="i_id"/>
+        <hr>
+        <label>Quantity</label>
+        <input type="number"name="quantity"/>
+        <hr>
+        <input type="submit" value="update">
+    </form>
+{{data}}
+</body>
+</html>
