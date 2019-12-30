@@ -8,7 +8,7 @@ def delete_object(i_ids):
         with connection.cursor() as cursor:
 
             sql = "delete from inventory_data where inventory_id = %s"
-            deletei = cursor.executemany(sql, i_ids)
+            cursor.executemany(sql, i_ids)
             data = cursor.rowcount
             connection.commit()
             return data

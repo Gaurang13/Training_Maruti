@@ -22,11 +22,9 @@
         <lable>TimeZone</lable>
         <input list="browsers" name="time_zone" required>
         <datalist id="browsers">
-            <option value="Pacific/Pago_Pago">
-            <option value="Australia/Broken_Hill">
-            <option value="Europe/Paris">
-            <option value="Asia/Hong_Kong">
-            <option value="Asia/Kolkata">
+            {% for pz in timezone_list %}
+                <option value={{pz}}>
+            {% endfor %}
         </datalist>
         <hr>
         <input type="submit" name="search">

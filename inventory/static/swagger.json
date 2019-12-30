@@ -1,0 +1,246 @@
+{
+  "info": {
+    "description": "sean",
+    "version": "1.0.0",
+    "title": "Inventory Management",
+    "contact": {
+      "email": "teamflash@gmail.com"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Inventory Request",
+      "description": "Example API for requesting and return book requests"
+    }
+  ],
+  "swagger": "2.0",
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "Index Page"
+        ],
+        "summary": "Return Index Page",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/insert": {
+      "get": {
+        "tags": [
+          "Insert Page"
+        ],
+        "summary": "Return Index Page",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schemas/bookRequest"
+            }
+          },
+          "404": {
+            "description": "Failed. Insert not found."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Insert Inventory Item"
+        ],
+        "summary": "Insert Inventory",
+        "consumes": ["multipart/form-data"],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "Name of Inventory",
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "in": "formData",
+            "description": "Category of Inventory",
+            "type": "string"
+          },
+          {
+            "name": "etime",
+            "in": "formData",
+            "description": "Formate must be yyyy-mm-ddTH:M",
+            "type": "string",
+            "format": "date",
+            "required": true
+          },
+          {
+            "name": "quantity",
+            "in": "formData",
+            "description": "Quantity Inventory",
+            "type": "string"
+          },
+          {
+            "name": "mtime",
+            "in": "formData",
+            "description": "Formate must be yyyy-mm-ddTH:M",
+            "type": "string",
+            "format": "date",
+            "required": true
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "description": "Category of Inventory",
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/search": {
+      "get": {
+        "tags": [
+          "Search Page"
+        ],
+        "summary": "Return Index Page",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Failed. Insert not found."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Search Inventory Item"
+        ],
+        "summary": "Search item with given Name or Category",
+        "parameters": [
+          {
+            "name": "s_name",
+            "in": "formData",
+            "description": "Name of Inventory",
+            "type": "string"
+          },
+          {
+            "name": "s_category",
+            "in": "formData",
+            "description": "Category of Inventory",
+            "type": "string"
+          },
+          {
+            "name": "time_zone",
+            "in": "formData",
+            "description": "Select Time Zone",
+            "type": "string",
+            "enum": [
+                      "Africa/Maseru",
+                      "Asia/Kolkata",
+                      "America/Indiana/Tell_City"
+
+            ],
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/update": {
+      "get": {
+        "tags": [
+          "Update Page"
+        ],
+        "summary": "Return Update Page",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Failed. Insert not found."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Update Quantity of Inventory"
+        ],
+        "summary": "Update Quantity with given ID",
+        "parameters": [
+          {
+            "name": "i_id",
+            "in": "formData",
+            "description": "Id of Inventory",
+            "type": "number"
+          },
+          {
+            "name": "quantity",
+            "in": "formData",
+            "description": "Quantity of Inventory",
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/delete": {
+      "get": {
+        "tags": [
+          "Delete Page"
+        ],
+        "summary": "Return Delete Page",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Failed. Insert not found."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Delete Item of Inventory"
+        ],
+        "summary": "Enter Id with comma (,) seperation to delete multiple items at single time",
+        "parameters": [
+          {
+            "name": "mdelete",
+            "in": "formData",
+            "description": "Id of Inventory",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+
+    }
+
+  }
+}

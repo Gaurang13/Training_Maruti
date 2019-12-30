@@ -19,9 +19,19 @@ def allowed_file(filename):
     return '.' in filename and filename.count(".") == 1 and \
            filename.rsplit('.', 1)[-1].lower() in ALLOWED_EXTENSIONS
 
+def save_file(image,name):
+    import os
+    from werkzeug import secure_filename
+    filename = secure_filename(image.filename)
+    image_name = name + '-' + "image." + filename.rsplit('.', 1)[-1].lower()
+    pname = os.path.join(mypath, image_name)
+    sname = os.path.join('/static/image', image_name)
+    image.save(pname)
+    return sname
 
-def utc2cst(date_str):
-    d1 = datetime.datetime.strptime(date_str, "%Y-%m-%dT%H:%M")#convert string date time in specific date time format
+
+def time2cst(date_str):
+    d1 = datetime.datetime.strptime(date_str, "%Y-%m-%d %H:%M")#convert string date time in specific date time format
     local_tz = pytz.timezone('Asia/Kolkata')
     date_temp = local_tz.localize(d1, is_dst=None) #navie time to aware time
     now_cst = date_temp.astimezone(pytz.timezone('CST6CDT'))#convert time to CST time
