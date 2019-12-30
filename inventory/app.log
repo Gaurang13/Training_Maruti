@@ -1,15 +1,9 @@
 werkzeug - WARNING -  * Debugger is active!
 werkzeug - INFO -  * Debugger PIN: 554-013-940
-werkzeug - INFO - 127.0.0.1 - - [30/Dec/2019 18:40:25] "GET /delete HTTP/1.1" 200 -
-Resources.i_delete - WARNING - try to delete not present id
-werkzeug - INFO - 127.0.0.1 - - [30/Dec/2019 18:40:29] "POST /delete HTTP/1.1" 302 -
-werkzeug - INFO - 127.0.0.1 - - [30/Dec/2019 18:40:29] "GET /delete HTTP/1.1" 200 -
-werkzeug - INFO - 127.0.0.1 - - [30/Dec/2019 18:40:32] "POST /delete HTTP/1.1" 302 -
-werkzeug - INFO - 127.0.0.1 - - [30/Dec/2019 18:40:32] "GET /delete HTTP/1.1" 200 -
-werkzeug - INFO - 127.0.0.1 - - [30/Dec/2019 18:40:36] "POST /delete HTTP/1.1" 302 -
-werkzeug - INFO - 127.0.0.1 - - [30/Dec/2019 18:40:36] "GET /delete HTTP/1.1" 200 -
-werkzeug - INFO - 127.0.0.1 - - [30/Dec/2019 18:40:40] "POST /delete HTTP/1.1" 302 -
-werkzeug - INFO - 127.0.0.1 - - [30/Dec/2019 18:40:40] "GET /delete HTTP/1.1" 200 -
-Resources.i_delete - WARNING - try to delete not present id
-werkzeug - INFO - 127.0.0.1 - - [30/Dec/2019 18:40:46] "POST /delete HTTP/1.1" 302 -
-werkzeug - INFO - 127.0.0.1 - - [30/Dec/2019 18:40:46] "GET /delete HTTP/1.1" 200 -
+werkzeug - INFO - 127.0.0.1 - - [30/Dec/2019 19:04:52] "GET /delete HTTP/1.1" 200 -
+werkzeug - INFO - 127.0.0.1 - - [30/Dec/2019 19:04:55] "GET /insert HTTP/1.1" 200 -
+werkzeug - INFO - 127.0.0.1 - - [30/Dec/2019 19:05:01] "GET /delete HTTP/1.1" 200 -
+werkzeug - INFO - 127.0.0.1 - - [30/Dec/2019 19:05:03] "GET /search HTTP/1.1" 200 -
+werkzeug - INFO - 127.0.0.1 - - [30/Dec/2019 19:05:33] "GET /update HTTP/1.1" 200 -
+Resources.update - INFO - Quantity Updated
+werkzeug - INFO - 127.0.0.1 - - [30/Dec/2019 19:05:48] "POST /update HTTP/1.1" 200 -

@@ -11,7 +11,7 @@ log = logging.getLogger(__name__)
 
 class insert_inventory(Resource):
     def get(self):
-        return output_html(render_template('insert_inventory.html'), 200)
+        return output_html(render_template('insert.html'), 200)
     def post(self):
         data = request.form
         name = data['name']
