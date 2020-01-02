@@ -1,18 +1,23 @@
-from flask import Flask
-from .Resources.data_validation import data_validation #get_data
-from .config import configure_app
+from .manage import create_app, app_init_rebbitmq, init_task
+from .create_logfile import createLogfile
 
 
-app = Flask(__name__)
-configure_app(app)
+__all__ = ["app", "uid_object", "run_server"]
+
+app = create_app()
+
+createLogfile()
+
+app_init_rebbitmq()  # Start Rebbit Mq
 
 
+@app.route('/<id>')
+def uid_object(id):
 
-@app.route('/<uid>')
-def uid_object(uid):
-    #get_data(uid)
-    data_validation(uid)
+    init_task(id)  # Fetch And Validation Task
+
     return "ok"
+
 
 def run_server():
     """Eventlet Server"""

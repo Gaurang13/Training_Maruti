@@ -4,13 +4,10 @@ from marshmallow import Schema, fields, ValidationError
 
 
 class UserSchema(Schema):
-    name = fields.String(required=True)
-    age = fields.Integer(required=True, error_messages={"required": "Age is required."})
-    city = fields.String(
-        required=True,
-        error_messages={"required": {"message": "City required", "code": 400}},
-    )
+    name = fields.Str(required=True)
     email = fields.Email()
+    created_at = fields.DateTime()
+
 
 
 try:

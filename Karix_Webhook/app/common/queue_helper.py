@@ -3,10 +3,13 @@ from threading import Thread
 import pika
 import requests
 from flask import current_app, json
-from ..Resources.receiving_end import message_end
+from .receiving_end import message_end
 from pika.exceptions import AMQPError
-from app.common.constant import QueueEnum
+from .constant import QueueEnum
+import logging
 
+
+logger = logging.getLogger(__name__)
 
 
 def connect():
@@ -60,8 +63,11 @@ def publish_message(route_key, payload, exchange_type='direct', delivery_mode=2)
                                       delivery_mode=delivery_mode,
                                   ))
 
+def queue_init():
+    create_queues()
+    #start_consumer()
 
-class ConsumerSendMessage(Thread):
+'''class ConsumerSendMessage(Thread):
     def __init__(self, queue_name):
         self.queue_name = queue_name
         self._connection = None
@@ -76,9 +82,7 @@ class ConsumerSendMessage(Thread):
             message_end(payload)
             ch.basic_ack(delivery_tag=method.delivery_tag)
         except Exception as e:
-            payload = json.loads(body.decode())
-            print(e)
-            publish_message(QueueEnum.UNSEND_EMAIL.value['route'], payload=payload)
+            logger.error(e)
             ch.basic_ack(delivery_tag=method.delivery_tag)
 
         finally:
@@ -92,35 +96,7 @@ class ConsumerSendMessage(Thread):
         self._channel.start_consuming()
 
 
-class ConsumerUnsendMessage(Thread):
-    def __init__(self, queue_name):
-        self.queue_name = queue_name
-        self._connection = None
-        self._channel = None
-        Thread.__init__(self)
-        Thread.daemon = True
-        self.start()
 
-
-    def run(self):
-        self._connection = connect()
-        self._channel = self._connection.channel()
-        self._channel.basic_qos(prefetch_count=10)
-        self._channel.basic_consume(self.callback, queue=self.queue_name, no_ack=False)
-        self._channel.start_consuming()
-
-    def callback(self, ch, method, properties, body):
-
-        try:
-
-                payload = json.loads(body.decode())
-                print("unsend")
-                ch.basic_ack(delivery_tag=method.delivery_tag)
-
-        except Exception as e:
-            print(e)
-        finally:
-            print("Processed")
 
 def start_consumer():
     from app import app
@@ -130,9 +106,7 @@ def start_consumer():
                 consumer_map[data.name](queue_name=data.value['queue'])
 
 
-def queue_init():
-    create_queues()
-    start_consumer()
+
 
 
 def consumer_health_checkup():
@@ -159,6 +133,5 @@ def consumer_health_checkup():
 
 
 consumer_map = {
-    QueueEnum.SEND_MESSAGE.name: ConsumerSendMessage,
-    QueueEnum.UNSEND_MESSAGE.name : ConsumerUnsendMessage
-   }
+    QueueEnum.SEND_MESSAGE.name: ConsumerSendMessage
+}'''
